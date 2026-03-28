@@ -1,26 +1,17 @@
-export default function FeedbackOptions({ onLeaveFeedback }) {
+import { useContext } from "react";
+import { FeedbackContext } from "../FeedbackContext";
+
+export default function FeedbackOptions() {
+  const { onLeaveFeedback } = useContext(FeedbackContext);
+  const options = ["good", "neutral", "bad"];
+
   return (
-    <div className="FeedbackOptions">
-      <div className="FeedbackOptionsBtns">
-        <button
-          onClick={() => onLeaveFeedback("good")}
-          className="FeedbackOptionsBtn"
-        >
-          Good
+    <div>
+      {options.map((option) => (
+        <button key={option} onClick={() => onLeaveFeedback(option)}>
+          {option}
         </button>
-        <button
-          onClick={() => onLeaveFeedback("neutral")}
-          className="FeedbackOptionsBtn"
-        >
-          Neutral
-        </button>
-        <button
-          onClick={() => onLeaveFeedback("bad")}
-          className="FeedbackOptionsBtn"
-        >
-          Bad
-        </button>
-      </div>
+      ))}
     </div>
   );
 }
